@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+set -e
 
-/etc/init.d/samba start
-tail -f /var/log/samba/*
+if [[ -f /templates/smb.conf ]]; then
+    cp -a -f /templates/smb.conf /etc/samba/
+fi
+
+exec "$@"
